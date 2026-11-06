@@ -185,8 +185,9 @@ footer small{color:var(--ink-soft);font-size:14px}
 @media (max-width:900px){.sec-head{flex-direction:column;align-items:start}
   .desk{height:440px}.card{width:min(240px,64vw);padding:10px 10px 14px}.card h3{font-size:19px}
   .card.c1{left:0;top:10px}.card.c2{left:auto;right:0;top:90px}.card.c3{left:12%;top:190px}
-  .preview{grid-template-columns:1fr}.story{grid-template-columns:1fr}.case-meta{grid-template-columns:1fr 1fr}.hero .wrap{grid-template-columns:1fr}}
-@media (max-width:420px){.phone{max-width:280px;margin-inline:auto}}
+  .preview{grid-template-columns:1fr}.story{grid-template-columns:1fr}.case-meta{grid-template-columns:1fr 1fr}.hero .wrap{grid-template-columns:1fr}
+  /* single column: keep the phone phone-sized and centred instead of stretching to the column */
+  .phone{width:min(280px,100%);margin-inline:auto}}
 
 /* Flo mascot */
 .flo{display:block;overflow:visible}
