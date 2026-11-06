@@ -177,7 +177,9 @@ footer small{color:var(--ink-soft);font-size:14px}
 .preview .frame .view{height:620px;overflow:auto;overscroll-behavior:contain}
 .preview .frame .view img{height:auto;object-fit:initial}
 .phone{border:3px solid var(--ink);border-radius:38px;padding:10px;background:var(--island)}
-.phone .screen{border-radius:28px;overflow:auto;height:560px;background:#fff;overscroll-behavior:contain}
+.phone .screen{border-radius:28px;overflow:auto;height:560px;background:#fff;overscroll-behavior:contain;scrollbar-width:none}
+/* no scrollbar inside the phone: it took width on the right and pushed the screenshot off-centre */
+.phone .screen::-webkit-scrollbar{display:none}
 .story{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin-top:72px}
 .story h3{font-size:24px;margin:0 0 8px}
 .story p{margin:0;color:var(--ink-soft)}
