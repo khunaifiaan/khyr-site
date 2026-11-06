@@ -1,0 +1,27 @@
+{
+  "slug": "fieldnote",
+  "no": 2,
+  "name": "Fieldnote",
+  "featured": false,
+  "status": "live",
+  "platform": "Garmin Forerunner 55, 165, 255, 265",
+  "price": "free",
+  "summary": {
+    "en": "A clean Garmin watch face that shows your training week at a glance.",
+    "id": "Watch face Garmin yang rapi untuk melihat minggu latihan sekilas."
+  },
+  "image": "/images/fieldnote-wrist.webp",
+  "cta": {
+    "en": "Get on Connect IQ",
+    "id": "Ambil di Connect IQ"
+  },
+  "url": "https://apps.garmin.com/apps/54016676-bdcc-44fe-8150-419b90fb0367",
+  "deskLabel": {
+    "en": "On your wrist",
+    "id": "Di pergelangan"
+  },
+  "deskLine": {
+    "en": "Your week on your wrist.",
+    "id": "Minggu latihan di pergelangan tangan."
+  }
+}

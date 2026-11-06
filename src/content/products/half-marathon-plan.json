@@ -1,0 +1,18 @@
+{
+  "slug": "half-marathon-plan",
+  "no": 4,
+  "name": "Half Marathon Plan",
+  "featured": false,
+  "status": "live",
+  "platform": "PDF, A4 / Letter",
+  "price": "free",
+  "summary": {
+    "en": "Twelve weeks, two plans and pace zones worked out from your 5K time.",
+    "id": "Dua belas minggu, dua rencana, dan zona pace yang dihitung dari waktu 5K Anda."
+  },
+  "cta": {
+    "en": "Get the plan",
+    "id": "Ambil rencananya"
+  },
+  "url": "https://khyrlabs.gumroad.com/l/halfmarathonplan"
+}

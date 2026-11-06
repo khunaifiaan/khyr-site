@@ -1,0 +1,222 @@
+---
+import Base from '../layouts/Base.astro';
+import Flo from './Flo.astro';
+import WorkCard from './WorkCard.astro';
+import { getProducts, getWork, getNotes, getSite, imgSize } from '../lib/content';
+import { t, localePath, catalogNo, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const [products, work, notes, site] = await Promise.all([getProducts(), getWork(), getNotes(), getSite()]);
+
+// Desk: three products with pictures, the featured one dealt last so it lands on top.
+const withImage = products.filter((p) => p.data.image);
+const top = withImage.find((p) => p.data.featured) ?? withImage[0];
+const desk = [...withImage.filter((p) => p !== top).slice(0, 2), top].filter(Boolean);
+const deskCards = await Promise.all(
+  desk.map(async (p) => ({ p: p.data, size: await imgSize(p.data.image!) })),
+);
+
+const catalog = await Promise.all(
+  products.map(async (p) => ({ p: p.data, size: p.data.featured && p.data.image ? await imgSize(p.data.image) : null })),
+);
+const noteItems = await Promise.all(notes.map(async (n) => ({ n: n.data, size: await imgSize(n.data.image) })));
+
+const qrKey = (name: string) => name.toLowerCase().replace(/[^a-z0-9]/g, '');
+const defaultQr = lang === 'id' ? 'saweria' : 'kofi';
+const support = await Promise.all(
+  site.support.map(async (s) => ({
+    ...s,
+    key: qrKey(s.name),
+    caption: s.url.replace(/^https?:\/\//, '').replace(/\/$/, ''),
+    alt: t(lang, 'qr_alt', { name: s.name }),
+  })),
+);
+const firstQr = support.find((s) => s.key === defaultQr) ?? support[0];
+const qrSize = firstQr ? await imgSize(firstQr.qr) : null;
+---
+
+<Base lang={lang} path="/">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <Flo class="hero-flo" label={t(lang, 'flo_label')} />
+        <h1>{t(lang, 'hero_title_1')}<br /><span class="hl">{t(lang, 'hero_title_2')}</span></h1>
+        <p class="lede">{t(lang, 'hero_lede')}</p>
+        <div class="actions">
+          <a class="btn primary" href="#tools">{t(lang, 'cta_tools')}</a>
+          <a class="btn ghost" href="#support">{t(lang, 'cta_support')}</a>
+        </div>
+      </div>
+      <div class="desk deal" id="desk" role="group" aria-label={t(lang, 'desk_label')}>
+        {
+          deskCards.map(({ p, size }, i) => (
+            <article class={`card c${i + 1}`}>
+              <div class="num">
+                <b>{catalogNo(p.no)}</b>
+                <span>{p.deskLabel?.[lang] ?? p.platform}</span>
+              </div>
+              <img src={p.image} alt={`${p.name}: ${p.summary[lang]}`} width={size.width} height={size.height} loading="eager" decoding="async" />
+              <h3>{p.name}</h3>
+              <p>{p.deskLine?.[lang] ?? p.summary[lang]}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="tools">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>{t(lang, 'tools_title')}</h2>
+        <p>{t(lang, 'tools_sub')}</p>
+      </div>
+      <div class="catalog">
+        {
+          catalog.map(({ p, size }) => (
+            <>
+              <div class="row">
+                <span class="no">{catalogNo(p.no)}</span>
+                <h3>{p.name}</h3>
+                <span class="what">{p.summary[lang]}</span>
+                <span class="meta">
+                  {p.platform}
+                  <br />
+                  {p.status === 'in-progress' ? (
+                    <span class="status soon">{t(lang, 'building')}</span>
+                  ) : p.version ? (
+                    <span class="status">v{p.version}</span>
+                  ) : (
+                    <span class="status">{t(lang, 'live')}</span>
+                  )}
+                </span>
+                <span class="price">{t(lang, 'free')}</span>
+                <a class="go" href={p.url} target="_blank" rel="noopener">{p.cta[lang]}</a>
+              </div>
+              {p.featured && (p.image || p.highlights) && (
+                <div class="flag">
+                  {p.image && size && (
+                    <img src={p.image} alt={`${p.name}: ${p.summary[lang]}`} width={size.width} height={size.height} loading="lazy" decoding="async" />
+                  )}
+                  <div>
+                    {p.highlights && p.highlights[lang].length > 0 && (
+                      <>
+                        <p class="mono">{t(lang, 'inside')}</p>
+                        <ul>{p.highlights[lang].map((h) => <li>{h}</li>)}</ul>
+                      </>
+                    )}
+                    {p.site && (
+                      <p style="margin-top:22px">
+                        <a class="link" href={p.site} target="_blank" rel="noopener">{t(lang, 'visit_site', { name: p.name })}</a>
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="work-preview">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>{t(lang, 'work_title')}</h2>
+        <a class="link" href={localePath(lang, '/work/')}>{t(lang, 'all_work')}</a>
+      </div>
+      <div class="work-grid">
+        {work.slice(0, 3).map((item) => <WorkCard item={item} lang={lang} />)}
+      </div>
+    </div>
+  </section>
+
+  <section id="notes">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>{t(lang, 'notes_title')}</h2>
+        <p>{t(lang, 'notes_sub')}</p>
+      </div>
+      <div class="notes">
+        {
+          noteItems.map(({ n, size }) => (
+            <a class="note" href={n.url} target="_blank" rel="noopener">
+              <img src={n.image} alt={`${t(lang, 'post')} ${catalogNo(n.no)}: ${n.text[lang]}`} width={size.width} height={size.height} loading="lazy" decoding="async" />
+              <p>{n.text[lang]}</p>
+            </a>
+          ))
+        }
+      </div>
+      <p style="margin-top:28px">
+        <a class="link" href={site.links.threads} target="_blank" rel="noopener">{t(lang, 'follow')}</a>
+      </p>
+    </div>
+  </section>
+
+  <section id="support" class="support">
+    <div class="wrap">
+      <div>
+        <h2>{t(lang, 'sup_title')}</h2>
+        <p>{t(lang, 'sup_text')}</p>
+        <div class="actions" style="margin-top:28px">
+          {
+            support.map((s) => (
+              <a
+                class="btn primary"
+                href={s.url}
+                target="_blank"
+                rel="noopener"
+                data-qr={s.key}
+                data-qr-src={s.qr}
+                data-qr-alt={s.alt}
+                data-qr-cap={s.caption}
+                data-active={String(s === firstQr)}
+              >
+                {s.name}
+              </a>
+            ))
+          }
+        </div>
+        <span class="pending">{t(lang, 'pending')}</span>
+      </div>
+      {
+        firstQr && (
+          <figure class="qrbox">
+            <img id="qrImg" src={firstQr.qr} alt={firstQr.alt} width={qrSize?.width || 220} height={qrSize?.height || 220} />
+            <figcaption id="qrCap">{firstQr.caption}</figcaption>
+            <p>{t(lang, 'qr')}</p>
+          </figure>
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<script>
+  function setupHome() {
+    const desk = document.getElementById('desk');
+    if (desk) {
+      desk.querySelectorAll<HTMLElement>('.card').forEach((c, i) => (c.style.transitionDelay = 0.15 + i * 0.18 + 's'));
+      requestAnimationFrame(() => setTimeout(() => desk.classList.remove('deal'), 150));
+    }
+    const img = document.getElementById('qrImg') as HTMLImageElement | null;
+    const cap = document.getElementById('qrCap');
+    const buttons = document.querySelectorAll<HTMLElement>('[data-qr]');
+    const show = (b: HTMLElement) => {
+      if (!img || !cap) return;
+      img.src = b.dataset.qrSrc!;
+      img.alt = b.dataset.qrAlt!;
+      cap.textContent = b.dataset.qrCap!;
+      buttons.forEach((x) => (x.dataset.active = String(x === b)));
+    };
+    buttons.forEach((b) => {
+      b.addEventListener('pointerenter', () => show(b));
+      b.addEventListener('focus', () => show(b));
+    });
+  }
+  document.addEventListener('astro:page-load', setupHome);
+</script>

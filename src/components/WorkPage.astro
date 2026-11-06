@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import WorkCard from './WorkCard.astro';
+import { getWork } from '../lib/content';
+import { t, localePath, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const work = await getWork();
+const filters = [
+  ['all', t(lang, 'f_all')],
+  ['landing', t(lang, 'f_landing')],
+  ['app', t(lang, 'f_app')],
+  ['brand', t(lang, 'f_brand')],
+] as const;
+---
+
+<Base lang={lang} path="/work/" title={t(lang, 'work_h1')} description={t(lang, 'work_lede')}>
+  <div class="page-top">
+    <div class="wrap">
+      <a class="back" href={localePath(lang, '/')}>{t(lang, 'back_home')}</a>
+      <h1>{t(lang, 'work_h1')}</h1>
+      <p class="lede">{t(lang, 'work_lede')}</p>
+      <div class="filters" role="group" aria-label={t(lang, 'filter_label')}>
+        {filters.map(([key, label]) => <button type="button" aria-pressed={key === "all" ? "true" : "false"} data-f={key}>{label}</button>)}
+      </div>
+    </div>
+  </div>
+  <section style="padding-top:20px">
+    <div class="wrap">
+      <div class="work-grid" id="workGrid">
+        {work.map((item, i) => <WorkCard item={item} lang={lang} eager={i < 3} />)}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  function setupFilters() {
+    const grid = document.getElementById('workGrid');
+    if (!grid) return;
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.filters button');
+    buttons.forEach((b) =>
+      b.addEventListener('click', () => {
+        const f = b.dataset.f!;
+        buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        grid.querySelectorAll<HTMLElement>('.work-card').forEach((c) => {
+          c.hidden = f !== 'all' && !(c.dataset.tags ?? '').split(' ').includes(f);
+        });
+      }),
+    );
+  }
+  document.addEventListener('astro:page-load', setupFilters);
+</script>

@@ -1,0 +1,203 @@
+# Pages CMS configuration: https://pagescms.org/docs/
+# Log in at https://app.pagescms.org with GitHub and open this repository.
+# Every save is a commit to main, and Cloudflare Pages redeploys the site.
+
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: products
+    label: Products
+    type: collection
+    path: src/content/products
+    format: json
+    filename: "{fields.slug}.json"
+    view:
+      fields: [no, name, status]
+      primary: name
+      sort: [no, name]
+      default:
+        sort: no
+        order: asc
+    fields:
+      - { name: slug, label: "Slug (lowercase, used in the file name)", type: string, required: true }
+      - { name: no, label: "Catalog number (1 shows as No.001)", type: number, required: true }
+      - { name: name, label: Name, type: string, required: true }
+      - { name: featured, label: "Featured (expands in the catalog, sits on top of the hero cards)", type: boolean, default: false }
+      - name: status
+        label: Status
+        type: select
+        required: true
+        options:
+          values:
+            - { name: live, label: Live }
+            - { name: in-progress, label: In progress }
+      - { name: version, label: "Version (optional, e.g. 0.5.19)", type: string }
+      - { name: platform, label: Runs on, type: string, required: true }
+      - name: price
+        label: Price
+        type: select
+        default: free
+        options:
+          values:
+            - { name: free, label: Free }
+      - name: summary
+        label: What it does
+        type: object
+        fields:
+          - { name: en, label: English, type: text, required: true }
+          - { name: id, label: Indonesian, type: text, required: true }
+      - name: highlights
+        label: "Highlights (featured product only)"
+        type: object
+        fields:
+          - { name: en, label: English, type: string, list: true }
+          - { name: id, label: Indonesian, type: string, list: true }
+      - { name: image, label: Image, type: image }
+      - name: cta
+        label: Button text
+        type: object
+        fields:
+          - { name: en, label: English, type: string, required: true }
+          - { name: id, label: Indonesian, type: string, required: true }
+      - { name: url, label: "Button link (Gumroad, Connect IQ...)", type: string, required: true }
+      - { name: site, label: "Product website (optional)", type: string }
+      - name: deskLabel
+        label: "Hero card label (e.g. On your screen)"
+        type: object
+        fields:
+          - { name: en, label: English, type: string }
+          - { name: id, label: Indonesian, type: string }
+      - name: deskLine
+        label: Hero card line
+        type: object
+        fields:
+          - { name: en, label: English, type: string }
+          - { name: id, label: Indonesian, type: string }
+
+  - name: work
+    label: Work
+    type: collection
+    path: src/content/work
+    format: json
+    filename: "{fields.slug}.json"
+    view:
+      fields: [no, title, hasCase]
+      primary: title
+      sort: [no, title]
+      default:
+        sort: no
+        order: asc
+    fields:
+      - { name: slug, label: "Slug (lowercase, used in the URL /work/slug/)", type: string, required: true }
+      - { name: no, label: "Work number (1 shows as No.01)", type: number, required: true }
+      - { name: title, label: Title, type: string, required: true }
+      - name: tags
+        label: Tags
+        type: select
+        options:
+          multiple: true
+          values:
+            - { name: landing, label: Landing page }
+            - { name: app, label: App }
+            - { name: brand, label: Brand }
+      - { name: concept, label: "Concept (shows a Concept tag)", type: boolean, default: false }
+      - { name: hasCase, label: Has a case study page, type: boolean, default: false }
+      - { name: liveUrl, label: "Live site link (optional)", type: string }
+      - { name: frameUrl, label: Text in the browser bar, type: string, required: true }
+      - { name: cover, label: "Cover / desktop screenshot (tall screenshots scroll on hover)", type: image, required: true }
+      - { name: mobile, label: "Phone screenshot (case study)", type: image }
+      - { name: year, label: Year, type: number }
+      - name: role
+        label: Role
+        type: object
+        fields:
+          - { name: en, label: English, type: string }
+          - { name: id, label: Indonesian, type: string }
+      - { name: stack, label: Built with, type: string }
+      - { name: languages, label: Languages, type: string }
+      - name: summary
+        label: Card summary
+        type: object
+        fields:
+          - { name: en, label: English, type: text, required: true }
+          - { name: id, label: Indonesian, type: text, required: true }
+      - name: lede
+        label: Case study intro
+        type: object
+        fields:
+          - { name: en, label: English, type: text }
+          - { name: id, label: Indonesian, type: text }
+      - name: problem
+        label: The problem
+        type: object
+        fields:
+          - { name: en, label: English, type: text }
+          - { name: id, label: Indonesian, type: text }
+      - name: approach
+        label: The approach
+        type: object
+        fields:
+          - { name: en, label: English, type: text }
+          - { name: id, label: Indonesian, type: text }
+      - name: result
+        label: The result
+        type: object
+        fields:
+          - { name: en, label: English, type: text }
+          - { name: id, label: Indonesian, type: text }
+
+  - name: notes
+    label: Notes
+    type: collection
+    path: src/content/notes
+    format: json
+    filename: "note-{fields.no}.json"
+    view:
+      fields: [no, image]
+      primary: no
+      sort: [no]
+      default:
+        sort: no
+        order: desc
+    fields:
+      - { name: no, label: Post number, type: number, required: true }
+      - { name: image, label: Post image, type: image, required: true }
+      - { name: url, label: Link to the Threads post, type: string, required: true }
+      - name: text
+        label: Caption
+        type: object
+        fields:
+          - { name: en, label: English, type: text, required: true }
+          - { name: id, label: Indonesian, type: text, required: true }
+
+  - name: site
+    label: Site settings
+    type: file
+    path: src/content/site.json
+    format: json
+    fields:
+      - name: tagline
+        label: Tagline
+        type: object
+        fields:
+          - { name: en, label: English, type: string, required: true }
+          - { name: id, label: Indonesian, type: string, required: true }
+      - name: support
+        label: Support links
+        type: object
+        list: true
+        fields:
+          - { name: name, label: "Name (Saweria, Ko-fi, Trakteer)", type: string, required: true }
+          - { name: url, label: Link, type: string, required: true }
+          - { name: qr, label: QR image, type: image, required: true }
+          - { name: note, label: Payment methods, type: string }
+      - name: links
+        label: Social links
+        type: object
+        fields:
+          - { name: gumroad, label: Gumroad store, type: string, required: true }
+          - { name: threads, label: Threads profile, type: string, required: true }
+      - { name: timezone, label: "Time zone for the island clock (city is never shown)", type: string, default: Asia/Jakarta }
+      - { name: showCity, label: "Show city (keep off)", type: boolean, default: false }

@@ -1,0 +1,93 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { imgSize } from '../lib/content';
+import { t, localePath, workNo, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+  item: CollectionEntry<'work'>;
+}
+const { lang, item } = Astro.props;
+const w = item.data;
+const cover = await imgSize(w.cover);
+const mobile = w.mobile ? await imgSize(w.mobile) : null;
+const meta = [
+  [t(lang, 'm_role'), w.role?.[lang]],
+  [t(lang, 'm_stack'), w.stack],
+  [t(lang, 'm_lang'), w.languages],
+  [t(lang, 'm_year'), w.year?.toString()],
+].filter(([, v]) => v);
+const story = [
+  [t(lang, 's1h'), w.problem?.[lang]],
+  [t(lang, 's2h'), w.approach?.[lang]],
+  [t(lang, 's3h'), w.result?.[lang]],
+].filter(([, v]) => v);
+const lede = w.lede?.[lang] ?? w.summary[lang];
+---
+
+<Base lang={lang} path={`/work/${w.slug}/`} title={w.title} description={lede} image={w.cover}>
+  <div class="page-top">
+    <div class="wrap">
+      <a class="back" href={localePath(lang, '/work/')}>{t(lang, 'back_work')}</a>
+      <p class="mono">{workNo(w.no)}</p>
+      <h1>{w.title}</h1>
+      <p class="lede" style="max-width:46ch">{lede}</p>
+      {
+        w.liveUrl && (
+          <div class="actions">
+            <a class="btn primary" href={w.liveUrl} target="_blank" rel="noopener">{t(lang, 'view_live')}</a>
+          </div>
+        )
+      }
+      {
+        meta.length > 0 && (
+          <dl class="case-meta">
+            {meta.map(([k, v]) => (
+              <div>
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
+    </div>
+  </div>
+  <section style="padding-top:20px">
+    <div class="wrap">
+      <div class="preview" style={mobile ? undefined : 'grid-template-columns:1fr'}>
+        <div class="frame">
+          <div class="bar"><i></i><i></i><i></i><span>{w.frameUrl}</span></div>
+          <div class="view" tabindex="0" role="region" aria-label={t(lang, 'desktop_preview')}>
+            <img src={w.cover} alt={t(lang, 'desktop_alt', { name: w.title })} width={cover.width} height={cover.height} decoding="async" />
+          </div>
+        </div>
+        {
+          w.mobile && mobile && (
+            <div>
+              <div class="phone">
+                <div class="screen" tabindex="0" role="region" aria-label={t(lang, 'mobile_preview')}>
+                  <img src={w.mobile} alt={t(lang, 'mobile_alt', { name: w.title })} width={mobile.width} height={mobile.height} loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </div>
+          )
+        }
+      </div>
+      <p class="hint">{t(lang, 'scroll_hint')}</p>
+      {
+        story.length > 0 && (
+          <div class="story">
+            {story.map(([h, p]) => (
+              <div>
+                <h3>{h}</h3>
+                <p>{p}</p>
+              </div>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+</Base>

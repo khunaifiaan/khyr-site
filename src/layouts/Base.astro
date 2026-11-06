@@ -1,0 +1,70 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Island from '../components/Island.astro';
+import Footer from '../components/Footer.astro';
+import { getSite } from '../lib/content';
+import { t, type Lang } from '../lib/i18n';
+import '../styles/global.css';
+
+interface Props {
+  lang: Lang;
+  /** English path of this page, e.g. "/" or "/work/paandaa/". */
+  path: string;
+  title?: string;
+  description?: string;
+  image?: string;
+}
+const { lang, path, title, description, image = '/images/khyr-brand-board.webp' } = Astro.props;
+const site = await getSite();
+const enHref = path;
+const idHref = `/id${path}`;
+const altHref = lang === 'en' ? idHref : enHref;
+const pageTitle = title ? `${title} · KHYR Labs` : t(lang, 'meta_title');
+const desc = description ?? t(lang, 'meta_desc');
+const canonical = new URL(lang === 'en' ? enHref : idHref, Astro.site);
+---
+
+<!doctype html>
+<html lang={lang} data-alt={altHref} transition:animate="none">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={new URL(enHref, Astro.site)} />
+    <link rel="alternate" hreflang="id" href={new URL(idHref, Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(enHref, Astro.site)} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="KHYR Labs" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'id_ID'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#F4EEE2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#12162A" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/logo/khyr_B10_icon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script is:inline>
+      try {
+        var t = localStorage.getItem('khyr-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <ClientRouter fallback="swap" />
+  </head>
+  <body>
+    <a class="skip" href="#main">{t(lang, 'skip')}</a>
+    <Island lang={lang} altHref={altHref} timezone={site.timezone} />
+    <div class="page">
+      <main id="main">
+        <slot />
+      </main>
+      <Footer lang={lang} links={site.links} />
+    </div>
+  </body>
+</html>

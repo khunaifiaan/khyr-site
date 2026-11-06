@@ -1,0 +1,27 @@
+{
+  "slug": "desk-garden",
+  "no": 3,
+  "name": "Desk Garden",
+  "featured": false,
+  "status": "in-progress",
+  "platform": "Windows",
+  "price": "free",
+  "summary": {
+    "en": "A living zen garden wallpaper that follows the time of day and the weather outside.",
+    "id": "Wallpaper taman zen hidup yang mengikuti waktu dan cuaca di luar."
+  },
+  "image": "/images/desk-garden-evening.webp",
+  "cta": {
+    "en": "Join early access",
+    "id": "Ikut akses awal"
+  },
+  "url": "https://khyrlabs.gumroad.com/l/deskgarden",
+  "deskLabel": {
+    "en": "On your wallpaper",
+    "id": "Di wallpaper"
+  },
+  "deskLine": {
+    "en": "A zen garden that follows your day.",
+    "id": "Taman zen yang mengikuti hari Anda."
+  }
+}

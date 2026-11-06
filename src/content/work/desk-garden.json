@@ -1,0 +1,16 @@
+{
+  "slug": "desk-garden",
+  "no": 2,
+  "title": "Desk Garden",
+  "tags": [
+    "app"
+  ],
+  "concept": true,
+  "hasCase": false,
+  "frameUrl": "Interactive mockup",
+  "cover": "/images/desk-garden-evening.webp",
+  "summary": {
+    "en": "A living wallpaper concept with an interactive mockup and promo film.",
+    "id": "Konsep wallpaper hidup, dengan mockup interaktif dan video promo."
+  }
+}

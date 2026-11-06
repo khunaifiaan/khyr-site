@@ -1,0 +1,16 @@
+{
+  "slug": "fieldnote",
+  "no": 4,
+  "title": "Fieldnote",
+  "tags": [
+    "app"
+  ],
+  "concept": false,
+  "hasCase": false,
+  "frameUrl": "Garmin Connect IQ",
+  "cover": "/images/fieldnote-wrist.webp",
+  "summary": {
+    "en": "A Garmin watch face that shows your week.",
+    "id": "Watch face Garmin yang menampilkan minggu latihan Anda."
+  }
+}

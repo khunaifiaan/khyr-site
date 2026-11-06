@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { t, localePath, workNo, type Lang } from '../lib/i18n';
+import { imgSize } from '../lib/content';
+
+interface Props {
+  item: CollectionEntry<'work'>;
+  lang: Lang;
+  eager?: boolean;
+}
+const { item, lang, eager = false } = Astro.props;
+const w = item.data;
+const size = await imgSize(w.cover);
+// Tall screenshots (whole landing pages) scroll slowly on hover; others fill the frame.
+const scroll = size.width > 0 && size.height / size.width > 1.4;
+const tagLabel = { landing: t(lang, 'f_landing'), app: t(lang, 'f_app'), brand: t(lang, 'f_brand') };
+const Tag = w.hasCase ? 'a' : 'div';
+const linkProps = w.hasCase ? { href: localePath(lang, `/work/${w.slug}/`) } : {};
+---
+
+<Tag class:list={['work-card', { soon: !w.hasCase }]} data-tags={w.tags.join(' ')} {...linkProps}>
+  <div class="frame">
+    <div class="bar"><i></i><i></i><i></i><span>{w.frameUrl}</span></div>
+    <div class="view">
+      <img
+        class:list={{ scroll }}
+        src={w.cover}
+        alt={`${w.title}: ${w.summary[lang]}`}
+        width={size.width || undefined}
+        height={size.height || undefined}
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+      />
+    </div>
+  </div>
+  <p class="mono" style="margin-top:14px">{workNo(w.no)}</p>
+  <h3>{w.title}</h3>
+  <p>{w.summary[lang]}</p>
+  <div class="tags">
+    {w.tags.map((tag) => <span class="tag">{tagLabel[tag]}</span>)}
+    {w.concept && <span class="tag concept">{t(lang, 'concept')}</span>}
+  </div>
+  <p class="mono" style="margin-top:10px;opacity:.75">{w.hasCase ? t(lang, 'open_case') : t(lang, 'case_soon')}</p>
+</Tag>

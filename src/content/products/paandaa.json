@@ -1,0 +1,43 @@
+{
+  "slug": "paandaa",
+  "no": 1,
+  "name": "paandaa",
+  "featured": true,
+  "status": "live",
+  "version": "0.5.19",
+  "platform": "Windows 10 / 11",
+  "price": "free",
+  "summary": {
+    "en": "A dynamic island for Windows with music, a focus timer, a water tracker and a small panda.",
+    "id": "Dynamic island untuk Windows dengan musik, timer fokus, pengingat minum, dan seekor panda kecil."
+  },
+  "highlights": {
+    "en": [
+      "Music with synced lyrics",
+      "Focus timer and a water bottle tracker",
+      "Weather, system stats, tasks and a file shelf",
+      "Hides in fullscreen. Updates itself."
+    ],
+    "id": [
+      "Musik dengan lirik yang tersinkron",
+      "Timer fokus dan pengingat minum",
+      "Cuaca, info sistem, tugas, dan rak file",
+      "Sembunyi saat layar penuh. Update sendiri."
+    ]
+  },
+  "image": "/images/paandaa-site-hero.webp",
+  "cta": {
+    "en": "Get paandaa",
+    "id": "Ambil paandaa"
+  },
+  "url": "https://khyrlabs.gumroad.com/l/paandaa",
+  "site": "https://paandaa-notch.vercel.app",
+  "deskLabel": {
+    "en": "On your screen",
+    "id": "Di layar"
+  },
+  "deskLine": {
+    "en": "A calm island at the top of your screen.",
+    "id": "Island yang tenang di atas layar."
+  }
+}

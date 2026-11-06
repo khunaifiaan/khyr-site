@@ -1,0 +1,32 @@
+{
+  "tagline": {
+    "en": "Small tools. Steady days.",
+    "id": "Alat kecil. Hari yang tenang."
+  },
+  "support": [
+    {
+      "name": "Saweria",
+      "url": "https://saweria.co/khyrlabs",
+      "qr": "/images/qr_saweria.svg",
+      "note": "QRIS, e-wallet"
+    },
+    {
+      "name": "Ko-fi",
+      "url": "https://ko-fi.com/khyrlabs",
+      "qr": "/images/qr_kofi.svg",
+      "note": "Card, PayPal"
+    },
+    {
+      "name": "Trakteer",
+      "url": "https://trakteer.id/khyrlabs",
+      "qr": "/images/qr_trakteer.svg",
+      "note": "QRIS, e-wallet"
+    }
+  ],
+  "links": {
+    "gumroad": "https://khyrlabs.gumroad.com",
+    "threads": "https://www.threads.com/@khyr.labs"
+  },
+  "timezone": "Asia/Jakarta",
+  "showCity": false
+}

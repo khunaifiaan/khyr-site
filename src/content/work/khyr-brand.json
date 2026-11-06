@@ -1,0 +1,16 @@
+{
+  "slug": "khyr-brand",
+  "no": 3,
+  "title": "KHYR Labs",
+  "tags": [
+    "brand"
+  ],
+  "concept": false,
+  "hasCase": false,
+  "frameUrl": "Brand system",
+  "cover": "/images/khyr-brand-board.webp",
+  "summary": {
+    "en": "Brand system and the Lab Card template for Threads.",
+    "id": "Sistem brand dan template Lab Card untuk Threads."
+  }
+}

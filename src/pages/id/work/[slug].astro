@@ -1,0 +1,13 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import CasePage from '../../../components/CasePage.astro';
+import { getWork } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const work = await getWork();
+  return work.filter((w) => w.data.hasCase).map((item) => ({ params: { slug: item.data.slug }, props: { item } }));
+}
+const { item } = Astro.props as { item: CollectionEntry<'work'> };
+---
+
+<CasePage lang="id" item={item} />

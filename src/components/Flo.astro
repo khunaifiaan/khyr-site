@@ -1,0 +1,112 @@
+---
+/**
+ * Flo, the KHYR lab mascot (DESIGN.md 7a).
+ * The script below runs once per visit (Astro bundles it) and acts on every `svg.flo`,
+ * including the mini Flo in the island, so it keeps working across client-side navigation.
+ */
+interface Props {
+  class?: string;
+  label?: string;
+}
+const { class: cls = '', label } = Astro.props;
+const eyes: [number, number, number][] = [
+  [90, 140, 17],
+  [132, 140, 17],
+];
+---
+
+<svg
+  class:list={['flo', cls]}
+  viewBox="0 0 220 220"
+  {...label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': 'true' }}
+>
+  <g class="body">
+    <rect x="88" y="14" width="44" height="22" rx="6" fill="#F2994A"></rect>
+    <path
+      d="M94 36 V78 L40 176 Q34 192 52 194 H168 Q186 192 180 176 L126 78 V36 Z"
+      fill="var(--surface)"
+      stroke="#1F2440"
+      stroke-width="7"
+      stroke-linejoin="round"></path>
+    <path d="M66 128 H154 L178 174 Q184 190 168 190 H52 Q36 190 42 174 Z" fill="#F4EEE2"></path>
+    <circle class="bub" cx="74" cy="168" r="7" fill="#F2994A"></circle>
+    <circle class="bub" cx="150" cy="160" r="5" fill="#F2994A" style="transition-delay:.12s"></circle>
+    <circle class="bub" cx="160" cy="176" r="3.5" fill="#F2994A" style="transition-delay:.24s"></circle>
+    {
+      eyes.map(([x, y, r]) => (
+        <>
+          <circle cx={x} cy={y} r={r} fill="#1F2440" />
+          <circle class="pupil" data-cx={x} data-cy={y} data-r="6.5" cx={x} cy={y} r="8.5" fill="#FFFFFF" />
+          <rect class="lid" x={x - r - 1} y={y - r - 1} width={2 * r + 2} height={2 * r + 2} rx={r} fill="#F4EEE2" />
+        </>
+      ))
+    }
+    <path class="mouth-o" d="M103 168 q8 6 16 0" fill="none" stroke="#1F2440" stroke-width="5" stroke-linecap="round"></path>
+    <path class="mouth-h" d="M98 164 q13 15 26 0 z" fill="#1F2440"></path>
+  </g>
+</svg>
+
+<script>
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let fx = innerWidth / 2;
+  let fy = innerHeight / 2;
+  let raf = 0;
+
+  const flos = () => document.querySelectorAll<SVGSVGElement>('svg.flo');
+
+  function look() {
+    raf = 0;
+    flos().forEach((s) => {
+      const b = s.getBoundingClientRect();
+      if (!b.width) return;
+      const sc = b.width / 220;
+      s.querySelectorAll<SVGCircleElement>('.pupil').forEach((p) => {
+        const cx = +p.dataset.cx!, cy = +p.dataset.cy!, r = +p.dataset.r!;
+        const dx = fx - (b.left + cx * sc), dy = fy - (b.top + cy * sc);
+        const d = Math.hypot(dx, dy) || 1;
+        const k = Math.min(1, d / (200 * sc + 120));
+        p.setAttribute('cx', String(cx + (dx / d) * r * k));
+        p.setAttribute('cy', String(cy + (dy / d) * r * k));
+      });
+    });
+  }
+  const queue = () => { if (!raf) raf = requestAnimationFrame(look); };
+
+  type Timed = SVGSVGElement & Record<string, number | undefined>;
+  function mood(cls: string, ms: number) {
+    if (reduceMotion) return;
+    flos().forEach((el) => {
+      const s = el as Timed;
+      s.classList.add(cls);
+      clearTimeout(s['_' + cls]);
+      s['_' + cls] = window.setTimeout(() => s.classList.remove(cls), ms);
+    });
+  }
+
+  function blink() {
+    window.setTimeout(() => {
+      flos().forEach((s) => {
+        s.classList.add('blink');
+        setTimeout(() => s.classList.remove('blink'), 130);
+      });
+      blink();
+    }, 3000 + Math.random() * 4000);
+  }
+
+  if (!reduceMotion) {
+    addEventListener('pointermove', (e) => { fx = e.clientX; fy = e.clientY; queue(); });
+    addEventListener('scroll', queue, { passive: true });
+    blink();
+    document.addEventListener('pointerover', (e) => {
+      const target = e.target as Element | null;
+      const related = e.relatedTarget as Node | null;
+      const support = target?.closest('.support .btn');
+      if (support) {
+        if (!support.contains(related)) { mood('happy', 1400); mood('fizz', 1300); }
+        return;
+      }
+      if (target?.closest('.row,.work-card,.note,.card,.btn')) mood('happy', 900);
+    });
+  }
+  document.addEventListener('astro:page-load', look);
+</script>

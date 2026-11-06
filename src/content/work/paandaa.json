@@ -1,0 +1,42 @@
+{
+  "slug": "paandaa",
+  "no": 1,
+  "title": "paandaa",
+  "tags": [
+    "landing",
+    "app"
+  ],
+  "concept": false,
+  "hasCase": true,
+  "liveUrl": "https://paandaa-notch.vercel.app",
+  "frameUrl": "paandaa-notch.vercel.app",
+  "cover": "/images/paandaa-site-full.webp",
+  "mobile": "/images/paandaa-site-mobile.webp",
+  "year": 2026,
+  "role": {
+    "en": "Design, copy, build",
+    "id": "Desain, teks, pembuatan"
+  },
+  "stack": "HTML, CSS, JS · Vercel",
+  "languages": "English, Indonesian",
+  "summary": {
+    "en": "Landing page for a Windows dynamic island app.",
+    "id": "Landing page untuk aplikasi dynamic island Windows."
+  },
+  "lede": {
+    "en": "A landing page for a dynamic island app on Windows, built to make an unfamiliar idea feel calm and obvious on the first screen.",
+    "id": "Landing page untuk aplikasi dynamic island di Windows, dibuat agar ide yang asing terasa tenang dan jelas sejak layar pertama."
+  },
+  "problem": {
+    "en": "People know the dynamic island from phones, but not on Windows. The page had to show it working before explaining anything.",
+    "id": "Orang mengenal dynamic island dari HP, tapi belum di Windows. Halaman ini harus memperlihatkannya bekerja sebelum menjelaskan apa pun."
+  },
+  "approach": {
+    "en": "The hero is the real island, opening on hover or tap. Every section uses real app screens, one green accent and plain words in English and Indonesian.",
+    "id": "Hero-nya adalah island sungguhan yang terbuka saat diarahkan atau diketuk. Setiap bagian memakai layar aplikasi asli, satu aksen hijau, dan bahasa sederhana dalam Inggris dan Indonesia."
+  },
+  "result": {
+    "en": "One page that shows, explains and gets people to download: free on Gumroad, with auto-updates and a short FAQ for SmartScreen and privacy questions.",
+    "id": "Satu halaman yang memperlihatkan, menjelaskan, dan mengajak orang mengunduh: gratis di Gumroad, update otomatis, dan FAQ singkat untuk pertanyaan SmartScreen dan privasi."
+  }
+}
