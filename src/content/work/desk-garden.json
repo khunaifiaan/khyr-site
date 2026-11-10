@@ -5,12 +5,12 @@
   "tags": [
     "app"
   ],
-  "concept": true,
+  "concept": false,
   "hasCase": false,
-  "frameUrl": "Interactive mockup",
+  "frameUrl": "Windows wallpaper · beta",
   "cover": "/images/desk-garden-evening.webp",
   "summary": {
-    "en": "A living wallpaper concept with an interactive mockup and promo film.",
-    "id": "Konsep wallpaper hidup, dengan mockup interaktif dan video promo."
+    "en": "A living wallpaper for Windows that follows your day, from concept to a working beta.",
+    "id": "Wallpaper hidup untuk Windows yang mengikuti hari Anda, dari konsep sampai versi beta yang berjalan."
   }
 }
