@@ -26,7 +26,7 @@ const products = defineCollection({
     status: z.enum(['live', 'in-progress']),
     version: opt(z.string()),
     platform: z.string(),
-    price: z.literal('free').default('free'),
+    price: z.string().default('free'),
     summary: pair,
     highlights: opt(z.object({ en: z.array(z.string()), id: z.array(z.string()) })),
     image: opt(z.string()),
