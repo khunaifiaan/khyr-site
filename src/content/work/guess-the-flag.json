@@ -1,0 +1,40 @@
+{
+  "slug": "guess-the-flag",
+  "no": 6,
+  "title": "Guess the Flag",
+  "tags": [
+    "app"
+  ],
+  "concept": false,
+  "hasCase": true,
+  "liveUrl": "https://apps.garmin.com/apps/1f82d522-47cb-4137-bf09-d59cae92b2b2",
+  "frameUrl": "Garmin Connect IQ",
+  "cover": "/images/guess-the-flag-cover.webp",
+  "year": 2026,
+  "role": {
+    "en": "Idea, design, build",
+    "id": "Ide, desain, pembuatan"
+  },
+  "stack": "Monkey C · Garmin Connect IQ",
+  "languages": "English, Indonesian",
+  "summary": {
+    "en": "A flag quiz for Garmin watches, made so a kid without a phone can learn countries while waiting.",
+    "id": "Kuis bendera untuk jam Garmin, dibuat agar anak yang belum punya HP bisa belajar negara sambil menunggu."
+  },
+  "lede": {
+    "en": "A flag quiz that lives on a Garmin watch, built for a kid who loves countries but doesn't have a phone yet.",
+    "id": "Kuis bendera di jam tangan Garmin, dibuat untuk anak yang suka belajar negara tapi belum punya HP."
+  },
+  "problem": {
+    "en": "My kid loves learning about countries, but has no phone to play on. Waiting in queues and at restaurants was the perfect moment to learn, and the only screen around was the watch on my wrist.",
+    "id": "Anak saya suka belajar tentang negara-negara, tapi belum punya HP untuk bermain. Saat antre atau menunggu di restoran adalah momen yang pas untuk belajar, dan satu-satunya layar yang ada hanyalah jam di pergelangan tangan saya."
+  },
+  "approach": {
+    "en": "Keep it simple enough for small hands and a small round screen: a country name above four flags, UP and DOWN to choose, START to answer. Each right answer scores 10 points and a wrong one costs one of five chances. All 195 countries, with country names in English or Indonesian.",
+    "id": "Dibuat sesederhana mungkin untuk tangan kecil dan layar bulat yang mungil: nama negara di atas empat bendera, tombol UP dan DOWN untuk memilih, START untuk menjawab. Jawaban benar dapat 10 poin, jawaban salah mengurangi satu dari lima kesempatan. Lengkap 195 negara, dengan nama negara dalam bahasa Inggris atau Indonesia."
+  },
+  "result": {
+    "en": "Waiting time turned into flag time. The app passed 100 downloads on Connect IQ with a 5-star review from a young player, whose note about flags being hard to tell apart on a small screen is shaping the next version.",
+    "id": "Waktu menunggu berubah jadi waktu belajar bendera. Aplikasinya sudah melewati 100 unduhan di Connect IQ dengan ulasan bintang 5 dari seorang pemain muda, yang masukannya tentang bendera yang sulit dibedakan di layar kecil menjadi bahan versi berikutnya."
+  }
+}
