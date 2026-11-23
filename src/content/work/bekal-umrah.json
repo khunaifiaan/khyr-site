@@ -6,12 +6,34 @@
     "app"
   ],
   "concept": false,
-  "hasCase": false,
+  "hasCase": true,
   "liveUrl": "https://umrah.khyr.my.id",
   "frameUrl": "umrah.khyr.my.id",
   "cover": "/images/bekal_umrah_cover_desktop.png",
+  "year": 2026,
+  "role": {
+    "en": "Idea, design, copy, build",
+    "id": "Ide, desain, teks, pembuatan"
+  },
+  "languages": "Indonesian, English",
   "summary": {
     "en": "An umrah companion for a whole group: daily agenda, packing lists, step-by-step manasik with prayers, mosque gates, and ziarah spots in Makkah and Madinah.",
     "id": "Pendamping umrah untuk satu rombongan: agenda harian, daftar bawaan, manasik langkah demi langkah dengan doa, pintu masjid, dan tempat ziarah di Makkah dan Madinah."
+  },
+  "lede": {
+    "en": "An umrah companion that turns scattered trip notes into one tidy guide for the whole group or family.",
+    "id": "Pendamping umrah yang merapikan catatan perjalanan yang tersebar menjadi satu panduan untuk seluruh rombongan atau keluarga."
+  },
+  "problem": {
+    "en": "An umrah itinerary ends up spread across chats, notes and screenshots: the day-by-day plan, how far the hotel is from the mosque, what is worth visiting nearby, and what each person should pack and wear. In a group, everyone keeps asking for the same information.",
+    "id": "Itinerary umrah biasanya tersebar di chat, catatan, dan tangkapan layar: rencana per hari, jarak hotel ke masjid, tempat yang bisa dikunjungi di sekitar hotel, serta bawaan dan baju tiap orang. Dalam rombongan, semua orang terus menanyakan informasi yang sama."
+  },
+  "approach": {
+    "en": "Everything lives in one place. The plan sets the days and the city order, Today shows each morning's agenda and outfits, Gates maps the mosque doors and walking distance from the hotel, and Ziarah lists places to visit nearby. Packing and outfits are kept per person, and a shared group code keeps the whole family or group in sync.",
+    "id": "Semuanya ada di satu tempat. Rencana mengatur jumlah hari dan urutan kota, Hari ini menampilkan agenda dan pakaian setiap pagi, Gerbang memetakan pintu masjid dan jarak jalan kaki dari hotel, dan Ziarah berisi tempat yang bisa dikunjungi di sekitarnya. Bawaan dan baju dicatat per orang, dan kode rombongan menjaga seluruh keluarga atau rombongan tetap tersinkron."
+  },
+  "result": {
+    "en": "Instead of digging through chats, the group opens one guide each morning, and when it is time for umrah, the manasik steps and prayers are right there, one step at a time.",
+    "id": "Tidak perlu lagi mencari-cari di chat: rombongan cukup membuka satu panduan setiap pagi, dan saat waktunya umrah, langkah manasik beserta doanya sudah tersedia, satu langkah demi satu langkah."
   }
 }
