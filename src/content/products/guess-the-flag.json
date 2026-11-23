@@ -14,5 +14,13 @@
     "en": "Get on Connect IQ",
     "id": "Ambil di Connect IQ"
   },
-  "url": "https://apps.garmin.com/apps/1f82d522-47cb-4137-bf09-d59cae92b2b2"
+  "url": "https://apps.garmin.com/apps/1f82d522-47cb-4137-bf09-d59cae92b2b2",
+  "deskLabel": {
+    "en": "On your wrist",
+    "id": "Di pergelangan"
+  },
+  "deskLine": {
+    "en": "A flag quiz for the queue.",
+    "id": "Kuis bendera sambil antre."
+  }
 }
