@@ -93,7 +93,7 @@ const qrSize = firstQr ? await imgSize(firstQr.qr) : null;
                     <span class="status">{t(lang, 'live')}</span>
                   )}
                 </span>
-                <span class="price">{t(lang, 'free')}</span>
+                <span class="price">{p.price === 'free' ? t(lang, 'free') : p.price}</span>
                 <a class="go" href={p.url} target="_blank" rel="noopener">{p.cta[lang]}</a>
               </div>
               {p.featured && (p.image || p.highlights) && (
