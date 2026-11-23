@@ -1,0 +1,19 @@
+{
+  "slug": "bekal-umrah",
+  "no": 5,
+  "name": "Bekal Umrah",
+  "featured": false,
+  "status": "live",
+  "platform": "Web app, any phone browser",
+  "price": "$15",
+  "summary": {
+    "en": "An umrah trip planner for the whole group: itinerary, packing, manasik and places near the hotel, synced in one link.",
+    "id": "Perencana umrah untuk satu rombongan: itinerary, bawaan, manasik, dan tempat di sekitar hotel, tersinkron dalam satu link."
+  },
+  "cta": {
+    "en": "Get Bekal Umrah",
+    "id": "Dapatkan Bekal Umrah"
+  },
+  "url": "https://khyrlabs.gumroad.com/l/bekalumrah",
+  "site": "https://umrah.khyr.my.id"
+}
