@@ -35,13 +35,7 @@ content:
             - { name: in-progress, label: In progress }
       - { name: version, label: "Version (optional, e.g. 0.5.19)", type: string }
       - { name: platform, label: Runs on, type: string, required: true }
-      - name: price
-        label: Price
-        type: select
-        default: free
-        options:
-          values:
-            - { name: free, label: Free }
+      - { name: price, label: "Price (free, or e.g. $15)", type: string, default: free }
       - name: summary
         label: What it does
         type: object
