@@ -1,0 +1,17 @@
+{
+  "slug": "bekal-umrah",
+  "no": 5,
+  "title": "Bekal Umrah",
+  "tags": [
+    "app"
+  ],
+  "concept": false,
+  "hasCase": false,
+  "liveUrl": "https://umrah.khyr.my.id",
+  "frameUrl": "umrah.khyr.my.id",
+  "cover": "/images/bekal_umrah_cover_desktop.png",
+  "summary": {
+    "en": "An umrah companion for a whole group: daily agenda, packing lists, step-by-step manasik with prayers, mosque gates, and ziarah spots in Makkah and Madinah.",
+    "id": "Pendamping umrah untuk satu rombongan: agenda harian, daftar bawaan, manasik langkah demi langkah dengan doa, pintu masjid, dan tempat ziarah di Makkah dan Madinah."
+  }
+}
