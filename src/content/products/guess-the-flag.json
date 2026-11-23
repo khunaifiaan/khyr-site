@@ -1,0 +1,18 @@
+{
+  "slug": "guess-the-flag",
+  "no": 6,
+  "name": "Guess the Flag",
+  "featured": false,
+  "status": "live",
+  "platform": "Garmin Forerunner 55, 165, 255, 265",
+  "price": "free",
+  "summary": {
+    "en": "A flag quiz for your wrist: pick the right flag from four, 195 countries, five chances.",
+    "id": "Kuis bendera di pergelangan tangan: pilih bendera yang benar dari empat, 195 negara, lima kesempatan."
+  },
+  "cta": {
+    "en": "Get on Connect IQ",
+    "id": "Ambil di Connect IQ"
+  },
+  "url": "https://apps.garmin.com/apps/1f82d522-47cb-4137-bf09-d59cae92b2b2"
+}
